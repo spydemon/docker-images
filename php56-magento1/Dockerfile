@@ -49,4 +49,5 @@ COPY rootfs /
 RUN /sbin/rc-update add php-fpm;
 RUN /sbin/rc-update add nginx;
 
+WORKDIR /var/www
 ENTRYPOINT ["/sbin/init"]
