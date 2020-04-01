@@ -4,6 +4,8 @@ LABEL maintainer="jsaipakoimetr@spyzone.fr"
 # Add community respository for being able to fetch php5-xdebug
 RUN cat /etc/apk/repositories | grep main | sed s/main/community/ >> /etc/apk/repositories;
 
+RUN apk add --update --no-cache wget openssl;
+
 # OpenRC installation.
 # Comes from https://hub.docker.com/r/dockage/alpine-openrc/dockerfile
 RUN set -x \
@@ -32,15 +34,25 @@ RUN set -x \
     && sed -i 's/cgroup_add_service /# cgroup_add_service /g' /lib/rc/sh/openrc-run.sh \
     && sed -i 's/VSERVER/DOCKER/Ig' /lib/rc/sh/init.sh
 
+# Gulp installation
+RUN /sbin/apk add --update --no-cache g++ make nodejs python \
+    && npm install --global gulp \
+    && npm install gulp-sass gulp-concat gulp-uglify gulp-sourcemaps \
+    && apk del g++ make python;
+
 # PHP installation.
 RUN mkdir -p /var/log/php \
     && /sbin/apk add --update --no-cache php5-fpm php5-xdebug;
 
 # Magento Magento PHP dependencies.
-RUN /sbin/apk add --update --no-cache php5-ctype php5-curl php5-dom php5-gd php5-iconv php5-json php5-pdo_mysql php5-phar php5-soap php5-zlib
+RUN /sbin/apk add --update --no-cache php5-ctype php5-curl php5-dom php5-gd php5-iconv php5-json php5-mcrypt php5-pdo_mysql php5-phar php5-soap php5-xml php5-zlib
+
+# Magerun installation.
+RUN wget -O /usr/local/bin/magerun https://files.magerun.net/n98-magerun.phar \
+    && chmod a+x /usr/local/bin/magerun
 
 # Nginx installation.
-RUN /sbin/apk add --update --no-confirm nginx nginx-mod-http-echo
+RUN /sbin/apk add --update --no-cache nginx nginx-mod-http-echo
 
 # Copy filesystem rewrites.
 COPY rootfs /
