@@ -47,6 +47,9 @@ RUN mkdir -p /var/log/php \
 # Magento Magento PHP dependencies.
 RUN /sbin/apk add --update --no-cache php5-ctype php5-curl php5-dom php5-gd php5-iconv php5-json php5-mcrypt php5-pdo_mysql php5-phar php5-soap php5-xml php5-zlib
 
+# MSMTP installation (needed for email sending)
+RUN /sbin/apk add --update --no-cache msmtp
+
 # Magerun installation.
 RUN wget -O /usr/local/bin/magerun https://files.magerun.net/n98-magerun.phar \
     && chmod a+x /usr/local/bin/magerun
