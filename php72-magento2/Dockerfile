@@ -36,7 +36,8 @@ RUN mkdir -p /var/log/php \
     && /sbin/apk add --update --no-cache php7-fpm php7-pecl-xdebug;
 
 # Nginx installation.
-RUN /sbin/apk add --update --no-cache nginx nginx-mod-http-echo
+RUN /sbin/apk add --update --no-cache nginx nginx-mod-http-echo \
+    && echo 'fastcgi_param MAGE_RUN_CODE $mage_run_code;' >> /etc/nginx/fastcgi_params;
 
 # MSMTP installation (needed for email sending)
 RUN /sbin/apk add --update --no-cache msmtp
