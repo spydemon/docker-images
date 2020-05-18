@@ -55,7 +55,8 @@ RUN wget -O /usr/local/bin/magerun https://files.magerun.net/n98-magerun.phar \
     && chmod a+x /usr/local/bin/magerun
 
 # Nginx installation.
-RUN /sbin/apk add --update --no-cache nginx nginx-mod-http-echo
+RUN /sbin/apk add --update --no-cache nginx nginx-mod-http-echo \
+    && echo 'fastcgi_param MAGE_RUN_CODE $mage_run_code;' >> /etc/nginx/fastcgi.conf;
 
 # Copy filesystem rewrites.
 COPY rootfs /
