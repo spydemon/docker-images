@@ -63,5 +63,8 @@ COPY rootfs /
 RUN /sbin/rc-update add php-fpm7;
 RUN /sbin/rc-update add nginx;
 
+# Set a PS1 that also prompt container name.
+ENV PS1="\h:\w \\$ "
+
 WORKDIR /var/www
 ENTRYPOINT ["/sbin/init"]
