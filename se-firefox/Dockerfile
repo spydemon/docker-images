@@ -29,7 +29,7 @@ RUN set -x \
     && sed -i 's/\tcgroup_add_service/\t#cgroup_add_service/g' /lib/rc/sh/openrc-run.sh \
     && sed -i 's/VSERVER/DOCKER/Ig' /lib/rc/sh/init.sh
 
-RUN apk add --update --no-cache fluxbox x11vnc xvfb 
+RUN apk add --update --no-cache fluxbox x11vnc xvfb ttf-freefont
 
 # Copy filesystem rewrites.
 COPY rootfs /
