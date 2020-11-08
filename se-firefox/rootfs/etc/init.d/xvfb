@@ -1,0 +1,8 @@
+#!/sbin/openrc-run
+
+# Launch Xvfb server. It's a X server that can run without any graphical output. It's thus nice for Docker environment.
+# This server can only be used through VNC.
+command="/usr/bin/Xvfb"
+command_args=":1 -screen 0 1024x768x16"
+command_background="yes"
+pidfile="/run/xvfb.pid"

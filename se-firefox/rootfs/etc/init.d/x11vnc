@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+
+# Launch a VNC server used by the developer for debugging purpose.
+# Note: this server has no password.
+
+command="/usr/bin/x11vnc"
+command_args="-display :1 -nopw -xkb -bg"
+
+depend() {
+  need net fluxbox
+}
