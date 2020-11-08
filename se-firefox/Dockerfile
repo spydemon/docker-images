@@ -26,7 +26,7 @@ RUN set -x \
             /etc/init.d/modules-load \
             /etc/init.d/modloop \
     # Can't do cgroups
-    && sed -i 's/\tcgroup_add_service /\t#cgroup_add_service /g' /lib/rc/sh/openrc-run.sh \
+    && sed -i 's/\tcgroup_add_service/\t#cgroup_add_service/g' /lib/rc/sh/openrc-run.sh \
     && sed -i 's/VSERVER/DOCKER/Ig' /lib/rc/sh/init.sh
 
 RUN apk add --update --no-cache fluxbox x11vnc xvfb 
