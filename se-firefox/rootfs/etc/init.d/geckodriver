@@ -1,0 +1,12 @@
+#!/sbin/openrc-run
+
+# Launch the Geckodriver needed for establishing the connexion between Selenium client and our testing Firefox.
+
+command="/opt/geckodriver"
+command_args="--host 0.0.0.0"
+command_background="yes"
+pidfile="/run/geckodriver.pid"
+
+depend() {
+  need x11vnc
+}

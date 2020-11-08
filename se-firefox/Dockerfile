@@ -44,5 +44,13 @@ RUN /sbin/rc-update add xvfb;
 # Set a PS1 that also prompt container name.
 ENV PS1="\h:\w \\$ "
 
+# Selenium installation starts here.
+# We install firefox and the geckodriver needed for interacting with it.
+RUN apk add --update --no-cache firefox
+RUN wget 'https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz' -O /opt/geckodriver.tar.gz \
+    && cd /opt \
+    && tar xvzf /opt/geckodriver.tar.gz
+RUN /sbin/rc-update add geckodriver;
+
 WORKDIR /var/www
 ENTRYPOINT ["/sbin/init"]
