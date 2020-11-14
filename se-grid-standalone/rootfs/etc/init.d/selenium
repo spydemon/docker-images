@@ -1,0 +1,8 @@
+#!/sbin/openrc-run
+
+# Launch the Selenium standalone server
+
+command="java"
+command_args="-jar /opt/selenium.jar -role standalone"
+command_background="yes"
+pidfile="/run/selenium.pid"
