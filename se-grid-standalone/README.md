@@ -1,6 +1,6 @@
 # Se-grid-standalone container
 
-Main aim of this container is to be compatible with [Magento MFTF](https://devdocs.magento.com/mftf/docs/introduction.html) system.
+Main aim of this container is to be compatible with [Magento MFTF](https://devdocs.magento.com/mftf/docs/introduction.html) system and Laravel Dusk.
 
 It runs a Selenum Grid server on its port 4444.
 
@@ -50,3 +50,59 @@ BROWSER=chrome
 ```
 
 You can test the configuration by running the `php vendor/bin/mftf doctor` command in your Magento container.
+
+# Debugging
+
+If your tests won't run, you can find some logging information with the following commands:
+
+```sh
+# Stop the deamon and launch selenium process on the front-ground. This will allow you to see stdout and stderr:
+/etc/init.d/selenium stop
+java -jar /opt/selenium.jar -role standalone
+
+# If it's not enough, you can also enable chromedriver log with those options:
+java -Dwebdriver.chrome.logfile='/var/log/chromedriver.log' -Dwebdriver.chrome.verboseLogging=true -jar /opt/selenium.jar -role standalone
+```
+
+## Common mistakes
+
+### Missing `--no-sandbox` option
+
+By default, the chromedriver refuses to start if we launch it with the `root` user. Unfortunately, `root` is the only existing one in my containers… The solution is to explicitly set the `--no-sandbox` flag when we start the process.
+This should be done when we set the abilities of the driver.
+
+#### How to set the `--no-sandbox` on Magento
+
+In: `dev/tests/acceptance/tests/functional.suite.yml`, add:
+
+```yaml
+modules:
+    […]
+    config:
+        \Magento\FunctionalTestingFramework\Module\MagentoWebDriver:
+            […]
+            capabilities:
+                […]
+                chromeOptions:
+                    args: [ […], '--no-sandbox']
+```
+
+#### How to set the `--no-sandbox` flag on Laravel
+
+In: `tests/DuskTestCase.php`, add:
+
+```php
+protected function driver()
+{
+    $options = (new ChromeOptions)->addArguments([
+        […],
+        '--no-sandbox',
+    ]);
+    return RemoteWebDriver::create(
+        'http://base-se_grid:4444/wd/hub',
+        DesiredCapabilities::chrome()->setCapability(
+            ChromeOptions::CAPABILITY, $options
+        )
+    );
+}
+```
