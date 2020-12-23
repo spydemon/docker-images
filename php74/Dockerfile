@@ -38,7 +38,6 @@ ENV PS1="\h:\w \\$ "
 # PHP installation.
 RUN mkdir -p /var/log/php \
     && /sbin/apk add --update --no-cache php7-fpm php7-pecl-xdebug;
-#    && /sbin/apk add --update --no-cache php8-fpm;
 
 # Nginx installation.
 RUN /sbin/apk add --update --no-cache nginx nginx-mod-http-echo;
