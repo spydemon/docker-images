@@ -1,5 +1,4 @@
-#TODO: change with a stable release instead of "latest" when one will be available with PHP-8.
-FROM alpine:edge
+FROM alpine:3.13
 LABEL maintainer="jsaipakoimetr@spyzone.fr"
 
 RUN apk add --update --no-cache wget openssl;
