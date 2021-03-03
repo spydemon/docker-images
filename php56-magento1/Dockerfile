@@ -45,7 +45,7 @@ RUN mkdir -p /var/log/php \
     && /sbin/apk add --update --no-cache php5-fpm php5-xdebug;
 
 # Magento Magento PHP dependencies.
-RUN /sbin/apk add --update --no-cache php5-ctype php5-curl php5-dom php5-gd php5-iconv php5-json php5-mcrypt php5-pdo_mysql php5-phar php5-soap php5-xml php5-zlib
+RUN /sbin/apk add --update --no-cache php5-calendar php5-ctype php5-curl php5-dom php5-gd php5-iconv php5-json php5-mcrypt php5-pdo_mysql php5-phar php5-soap php5-xml php5-zlib
 
 # MSMTP installation (needed for email sending)
 RUN /sbin/apk add --update --no-cache msmtp
