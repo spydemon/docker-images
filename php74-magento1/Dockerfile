@@ -8,4 +8,7 @@ RUN /sbin/apk add --update --no-cache php7-calendar php7-ctype php7-curl php7-do
 RUN wget -O /usr/local/bin/magerun https://files.magerun.net/n98-magerun.phar \
     && chmod a+x /usr/local/bin/magerun
 
+# Copy filesystem rewrites.
+COPY rootfs /
+
 ENTRYPOINT ["/sbin/init"]
