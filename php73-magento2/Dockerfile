@@ -44,8 +44,8 @@ RUN /sbin/apk add --update --no-cache msmtp
 
 # Magento2 php dependencies
 RUN /sbin/apk add --update --no-cache composer php7-bcmath php7-curl php7-ctype php7-dom php7-fileinfo php7-ftp \
-    php7-gd php7-iconv php7-intl php7-pdo_mysql php7-session php7-simplexml php7-soap php7-sodium php7-sockets \
-    php7-tokenizer php7-xml php7-xsl php7-xmlwriter php7-zip
+    php7-gd php7-iconv php7-intl php7-pdo_mysql php7-posix php7-session php7-simplexml php7-soap php7-sodium \
+    php7-sockets php7-tokenizer php7-xml php7-xsl php7-xmlreader php7-xmlwriter php7-zip
 
 # Magerun 2 installation
 RUN wget https://files.magerun.net/n98-magerun2.phar -O /usr/local/bin/magerun \
