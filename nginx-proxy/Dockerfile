@@ -1,4 +1,4 @@
-FROM jwilder/nginx-proxy:alpine
+FROM nginxproxy/nginx-proxy:alpine
 LABEL maintainer="jsaipakoimetr@spyzone.fr"
 
 COPY rootfs /
