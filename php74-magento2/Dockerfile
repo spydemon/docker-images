@@ -1,8 +1,13 @@
 FROM spydemon/php74:0.1
 LABEL maintainer="jsaipakoimetr@spyzone.fr"
 
-# Use Composer 1 instead of Composer 2.
-RUN wget https://getcomposer.org/download/1.10.20/composer.phar -O /usr/local/bin/composer \
+# Add Composer 1
+RUN wget https://getcomposer.org/download/latest-1.x/composer.phar -O /usr/local/bin/composer1 \
+    && chmod a+x /usr/local/bin/composer1 \
+    && /sbin/apk add --update --no-cache php7-phar php7-json php7-mbstring
+
+# Add Composer 2
+RUN wget https://getcomposer.org/download/latest-2.x/composer.phar -O /usr/local/bin/composer \
     && chmod a+x /usr/local/bin/composer \
     && /sbin/apk add --update --no-cache php7-phar php7-json php7-mbstring
 
