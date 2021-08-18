@@ -13,7 +13,7 @@ RUN wget https://getcomposer.org/download/latest-2.x/composer.phar -O /usr/local
 
 # Magento2 php dependencies
 RUN /sbin/apk add --update --no-cache php7-bcmath php7-curl php7-ctype php7-dom php7-fileinfo php7-ftp \
-    php7-gd php7-iconv php7-intl php7-pdo_mysql php7-posix php7-session php7-simplexml php7-soap php7-sodium \
+    php7-gd php7-gmp php7-iconv php7-intl php7-pdo_mysql php7-posix php7-session php7-simplexml php7-soap php7-sodium \
     php7-sockets php7-tokenizer php7-xml php7-xsl php7-xmlreader php7-xmlwriter php7-zip
 
 # Magerun 2 installation
