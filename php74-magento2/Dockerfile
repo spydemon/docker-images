@@ -21,7 +21,7 @@ RUN wget https://files.magerun.net/n98-magerun2.phar -O /usr/local/bin/magerun \
     && chmod a+x /usr/local/bin/magerun
 
 # Grunt installation
-RUN /sbin/apk add --update --no-cache npm \
+RUN /sbin/apk add --update --no-cache autoconf automake file gcc libc-dev nasm npm make \
     && npm -g install grunt-cli;
 
 # MySQL client (not mandatory but useful: some magerun command will not work without it.)
