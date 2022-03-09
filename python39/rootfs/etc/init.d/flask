@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+command="/opt/flask.sh"
+command_background="yes"
+pidfile="/run/flask.pid"
+
+start() {
+	ebegin "Starting Python Flask server";
+	start-stop-daemon --start --quiet --background --pidfile "${pidfile}" --exec "${command}";
+	eend $?;
+}
+
+stop() {
+	ebegin "Stopping Python Flask server";
+	start-stop-daemon --stop --quiet --pidfile "${pidfile}";
+	eend $?;
+}
