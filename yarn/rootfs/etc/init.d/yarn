@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+command="/opt/yarn.sh"
+command_background="yes"
+pidfile="/run/yarn.pid"
+
+start() {
+	ebegin "Starting Yarn dev instruction";
+	start-stop-daemon --start --quiet --background --pidfile "${pidfile}" --exec "${command}";
+	eend $?;
+}
+
+stop() {
+	ebegin "Stopping Yarn dev instruction";
+	start-stop-daemon --stop --quiet --pidfile "${pidfile}";
+	eend $?;
+}
