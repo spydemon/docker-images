@@ -22,6 +22,9 @@ RUN wget https://files.magerun.net/n98-magerun2.phar -O /usr/local/bin/magerun \
 RUN /sbin/apk add --update --no-cache autoconf automake file gcc libc-dev nasm npm make \
     && npm -g install grunt-cli;
 
+# Needed for Snowdog frontools often used in Sebfie projects.
+RUN /sbin/apk add --update --no-cache yarn
+
 # MySQL client (not mandatory but useful: some magerun command will not work without it.)
 RUN /sbin/apk add --update --no-cache mysql-client;
 
