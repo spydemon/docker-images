@@ -1,9 +1,9 @@
-FROM spydemon/alpn312-x11:0.1
+FROM spydemon/alpn319-x11
 LABEL maintainer="jsaipakoimetr@spyzone.fr"
 
 # Installation of the Selenium server and chromedriver.
 RUN apk add --update --no-cache chromium chromium-chromedriver openjdk11
-RUN wget 'https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar' -O /opt/selenium.jar;
+RUN wget 'https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.19.0/selenium-server-4.19.1.jar' -O /opt/selenium.jar;
 
 # Copy filesystem rewrites.
 COPY rootfs /
