@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+
+# Launch fluxbox window manager.
+
+command="/usr/bin/fluxbox"
+command_background="yes"
+pidfile="/run/fluxbox.pid"
+
+depend() {
+  need xvfb
+}
